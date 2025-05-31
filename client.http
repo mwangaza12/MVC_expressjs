@@ -1,0 +1,40 @@
+# DEFAULT ROUTE
+
+###
+GET http://localhost:3000/
+
+
+# GET USERS
+###
+GET http://localhost:3000/api/users
+
+# GET USER BY ID
+###
+GET http://localhost:3000/api/users/1
+
+
+# CREATE USER
+###
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "fullName": "John Doe",
+    "email": "john@gmail.com",
+    "password": "password123"
+}
+
+
+# UPDATE USER
+###
+PUT http://localhost:3000/api/users/1
+Content-Type: application/json
+
+{
+    "fullName": "Joseph Smith",
+    "email": "joseph@gmail.com",
+    "password": "password123"
+}
+# DELETE USER
+###
+DELETE http://localhost:3000/api/users/1
