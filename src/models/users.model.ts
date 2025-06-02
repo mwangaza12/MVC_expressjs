@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import db from "./drizzle/db";
+import db from "../config/db";
 import { TUserInsert, TUserSelect, userTable } from "./drizzle/schema";
  
 //CRUD Operations for User entity
