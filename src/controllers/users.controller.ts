@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { createUserServices, deleteUserServices, getUserByIdServices, getUsersServices, updateUserServices } from "../models/users.model";
+import { createUserModel, deleteUserModel, getUserByIdModel, getUsersModel, updateUserModel } from "../models/users.model";
  
 //Business logic for user-related operations
  
 export const getUsers = async (req: Request, res: Response) => {
     try {
-        const allUsers = await getUsersServices();
+        const allUsers = await getUsersModel();
         if (allUsers == null || allUsers.length == 0) {
           res.status(404).json({ message: "No users found" });
         }else{
@@ -24,7 +24,7 @@ export const getUserById = async (req: Request, res: Response) => {
          return; // Prevent further execution
     }
     try {
-        const user = await getUserByIdServices(userId);
+        const user = await getUserByIdModel(userId);
         if (user == undefined) {
             res.status(404).json({ message: "User not found" });
         } else {
@@ -42,7 +42,7 @@ export const createUser = async (req: Request, res: Response) => {
         return; // Prevent further execution
     }
     try {
-        const newUser = await createUserServices({ fullName, email, password });
+        const newUser = await createUserModel({ fullName, email, password });
         if (newUser == null) {
             res.status(500).json({ message: "Failed to create user" });
         } else {
@@ -65,7 +65,7 @@ export const updateUser = async (req: Request, res: Response) => {
         return; // Prevent further execution
     }
     try {
-        const updatedUser = await updateUserServices(userId, { fullName, email, password });
+        const updatedUser = await updateUserModel(userId, { fullName, email, password });
         if (updatedUser == null) {
             res.status(404).json({ message: "User not found or failed to update" });
         } else {
@@ -83,7 +83,7 @@ export const deleteUser = async (req: Request, res: Response) => {
         return; // Prevent further execution
     }
     try {
-        const deletedUser = await deleteUserServices(userId);
+        const deletedUser = await deleteUserModel(userId);
         if (deletedUser) {
             res.status(200).json({ message: "User deleted successfully" });
         } else {
